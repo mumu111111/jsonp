@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跨域</title>
+</head>
+<body>
+<div class="container">
+    <ul class="news">
+        <li>        84年阅兵副总指挥周衣冰去世 与儿子同为中将
+        </li>
+        <li>        南海岛礁将有“充电宝”?中国又低调做了件大事
+        </li>
+        <li>        侠客岛：让各大富豪隐形资产“见光死”的政策来了
+        </li>
+    </ul>
+    <button class='change'>换一组</button>
+</div>
+
+<script>
+
+    $('.change').addEventListener('click',function(){
+        var script=document.createElement('script')
+        script.src= 'http://localhost:8080/getNews?callback=appendHtml'
+        document.head.appendChild(script)
+        document.head.removeChild(script)
+    })
+
+    function appendHtml(news){
+        var html=''
+        for(var i=0; i<news.length;i++){
+            html+= '<li>'+news[i]+'</li>'
+
+        }
+        console.log(html)
+        $('.news').innerHTML=html
+    }
+
+
+    function $(id){
+        return document.querySelector(id)
+    }
+
+
+
+
+</script>
+
+
+</body>
+</html>
